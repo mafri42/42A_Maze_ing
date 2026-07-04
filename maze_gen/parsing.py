@@ -32,6 +32,7 @@ def config() -> dict:
                 entry_coord = [int(x) for x in data_dict['ENTRY'].split(',')]
                 exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
                 output_file = data_dict['OUTPUT_FILE']
+                seed = data_dict['SEED']
                 not_perfect = data_dict['PERFECT'].lower()
                 if not_perfect == 'true':
                     perfect = True
@@ -46,7 +47,8 @@ def config() -> dict:
                     'entry': entry_coord,
                     'exit': exit_coord,
                     'output_file': output_file,
-                    'perfect': perfect
+                    'perfect': perfect,
+                    'seed': seed
                 }
         except FileNotFoundError as e:
             print(f"[STDERR] Error opening '{filename}': {e}")

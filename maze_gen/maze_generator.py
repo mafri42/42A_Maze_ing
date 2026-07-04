@@ -3,7 +3,8 @@ import random
 
 class MazeGenerator:
     def __init__(self, width: int, height: int, entry: tuple[int, int],
-                 exit: tuple[int, int], perfect: bool, output: str) -> None:
+                 exit: tuple[int, int], perfect: bool, output: str,
+                 seed: int) -> None:
         if width <= 0 or height <= 0:
             raise ValueError("Error: Width and Height have to be > 0.")
         self.width = width
@@ -12,8 +13,14 @@ class MazeGenerator:
         self.exit = exit
         self.perfect = perfect
         self.output = output
+        self.seed = seed
         self.matrix: list[list[int]] = [[15 for _ in range(width)]
                                         for _ in range(height)]
+        if seed == 0:
+            # if seed != 0: random.seed(self.seed)
+            self.seed = random.randint(1, 1927)
+        else:
+            self.seed = seed
 
     def print_matrix(self) -> None:
         for row in self.matrix:
@@ -113,7 +120,7 @@ class MazeGenerator:
 '''
 if __name__ == "__main__":
     maze = MazeGenerator(width=6, height=5, entry=(0, 0), exit=(5, 4),
-                         perfect=True, output="maze.txt")
+                         perfect=True, output="maze.txt", seed=0)
     maze.check()
     maze.mazing()
     maze.print_matrix()

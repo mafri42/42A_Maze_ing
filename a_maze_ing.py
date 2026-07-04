@@ -1,6 +1,6 @@
 import sys
-from parsing import config
-from maze_generator import MazeGenerator
+from maze_gen.parsing import config
+from maze_gen.maze_generator import MazeGenerator
 
 
 if __name__ == "__main__":
@@ -11,7 +11,8 @@ if __name__ == "__main__":
         entry=data['entry'],
         exit=data['exit'],
         output=data['output_file'],
-        perfect=data['perfect']
+        perfect=data['perfect'],
+        seed=data['seed']
     )
     try:
         maze.check()
