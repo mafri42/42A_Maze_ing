@@ -1,7 +1,9 @@
+import random
+
 class MazeGenerator:
-    def __init__(self, width: int, height: int, entry: list, exit: list, perfect: bool, output: str) -> None:
+    def __init__(self, width: int, height: int, entry: tuple[int, int], exit: tuple[int, int], perfect: bool, output: str) -> None:
         if width <= 0 or height <= 0:
-            raise ValueError("Error: Width and Height have to be >0.")
+            raise ValueError("Error: Width and Height have to be > 0.")
         
         self.width = width
         self.height = height
@@ -85,7 +87,29 @@ class MazeGenerator:
             self.matrix[current_y][current_x] -= 2
             self.matrix[next_y][next_x] -= 8
 
+    def mazing(self) -> None:
+        checked: list[list[bool]] = [[False for _ in range(self.width)] for _ in range(self.height)]
+        x, y = self.entry
+        checked[y][x] = True
+        stacked: list[tuple[int, int]] = [(x, y)]
+        while stacked:
+            x, y = stacked[-1]
+            valid = self.move_first(x,y, checked)
+            if valid:
+                next_x, next_y, dir = random.choice(valid)
+                checked[next_y][next_x] = True
+                self.wreck_it_ralph(x, y, next_x, next_y, dir)
+                stacked.append((next_x, next_y))
+
+            else:
+                stacked.pop()
+                
+
+
+
+
 if __name__ == "__main__":
-    maze = MazeGenerator(width=5, height=5, entry=[0,0], exit=[4,4], perfect=True, output="maze.txt")
-    maze.print_matrix()
+    maze = MazeGenerator(width=6, height=5, entry=[0,0], exit=[5,4], perfect=True, output="maze.txt")
     maze.check()
+    maze.mazing()
+    maze.print_matrix()
