@@ -1,0 +1,56 @@
+import sys
+import os
+
+
+def config() -> dict:
+    if len(sys.argv) > 2:
+        print("Too many arguments")
+        sys.exit(1)
+    elif len(sys.argv) != 2:
+        print("Too few arguments")
+        sys.exit(1)
+    else:
+        filename = sys.argv[1]
+        try:
+            if filename != "config.txt":
+                raise ValueError(f"it's not the right file '{filename}'")
+            if os.path.basename(sys.argv[0]) != "a_maze_ing.py":
+                raise ValueError(f"it's not the right file '{sys.argv[0]}'")
+            with open(sys.argv[1], "r") as file:
+                data_dict = {}
+                for i in file:
+                    line = i.strip()
+                    if line.startswith("#") or not line:
+                        continue
+                    if '=' not in i:
+                        raise ValueError(f"MIssing '=' in: {i}")
+                    key, value = line.split("=", 1)
+                    data_dict[key.strip().upper()] = value.strip()
+                print(data_dict)
+                width = int(data_dict['WIDTH'])
+                height = int(data_dict['HEIGHT'])
+                entry_coord = [int(x) for x in data_dict['ENTRY'].split(',')]
+                exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
+                output_file = data_dict['OUTPUT_FILE']
+                not_perfect = data_dict['PERFECT'].lower()
+                if not_perfect == 'true':
+                    perfect = True
+                elif not_perfect == 'false':
+                    perfect = False
+                else:
+                    raise ValueError("PERFECT should be 'true' or"
+                                     f"'false', not '{not_perfect}'")
+                return {
+                    'width': width,
+                    'height': height,
+                    'entry': entry_coord,
+                    'exit': exit_coord,
+                    'output_file': output_file,
+                    'perfect': perfect
+                }
+        except FileNotFoundError as e:
+            print(f"[STDERR] Error opening '{filename}': {e}")
+            sys.exit(1)
+        except ValueError as e:
+            print(f"Error opening file '{filename}': {e}")
+            sys.exit(1)
