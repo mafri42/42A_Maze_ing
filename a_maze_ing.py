@@ -1,6 +1,6 @@
 import sys
-from maze_gen.parsing import config
-from maze_gen.maze_generator import MazeGenerator
+from a_maze_ing.parsing import config
+from a_maze_ing.maze_generator import MazeGenerator
 
 
 if __name__ == "__main__":
