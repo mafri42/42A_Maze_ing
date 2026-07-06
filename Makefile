@@ -1,6 +1,8 @@
 VENV = ./.venv
 BIN = $(VENV)/bin
 
+all: install run
+
 install:
 	python3 -m venv $(VENV)
 	$(BIN)/pip install --upgrade pip
@@ -8,7 +10,7 @@ install:
 	$(BIN)/pip install -e .
 
 run:
-	$(BIN)/python3 ./src/__main__.py ./config.txt
+	$(BIN)/python3 a_maze_ing.py config.txt
 
 debug:
 	$(BIN)/python3 -m pdb a_maze_ing.py config.txt
@@ -25,4 +27,4 @@ build:
 	$(BIN)/pip install build
 	$(BIN)/python3 -m build --wheel --outdir . --config-setting=--build-option=--plat-name=linux_x86_64
 
-.PHONY: install run debug clean lint lint-strict build
+.PHONY: all install run debug clean lint lint-strict build

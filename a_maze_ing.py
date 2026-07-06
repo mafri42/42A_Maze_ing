@@ -1,6 +1,7 @@
 import sys
 from src.a_maze_ing.parsing import config
 from src.a_maze_ing.maze_generator import MazeGenerator
+from src.a_maze_ing.maze_render import MazeRenderer
 
 
 if __name__ == "__main__":
@@ -16,9 +17,14 @@ if __name__ == "__main__":
     )
     try:
         maze.check()
+        maze.mazing()
     except ValueError as e:
         print(f"Error: {e}")
         sys.exit(1)
     print(f"\nLab {maze.width}x{maze.height} initialized!")
-    maze.mazing()
-    maze.print_matrix()
+    try:
+        renderer = MazeRenderer(maze)
+        renderer.interactive_menu()
+    except ValueError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
