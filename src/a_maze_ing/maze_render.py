@@ -1,11 +1,12 @@
-from .ft_pattern import Pattern
 import os
 
 
 class MazeRenderer:
-    def __init__(self, maze_gen, ft_coords) -> None:
+    def __init__(self, maze_gen) -> None:
         self.maze = maze_gen
         self.show_path = False
+        self.maze.entry = tuple(self.maze.entry)
+        self.maze.exit = tuple(self.maze.exit)
 
         self.WALL_COLORS = [
             "\033[37m",  # 0: Bianco
@@ -18,13 +19,16 @@ class MazeRenderer:
         self.current_color_idx = 0  # Indice del colore attuale
 
         self.RESET = "\033[0m"
-        self.ENTRY_COLOR = "\033[45m"  # Sfondo Magenta per l'ingresso
+        self.ENTRY_COLOR = "\033[42m"  # Sfondo Magenta per l'ingresso
         self.EXIT_COLOR = "\033[41m"   # Sfondo Rosso per l'uscita
         self.PATH_COLOR = "\033[44m"   # Sfondo Blu per il cammino
-        self.FORTY_TWO_COLOR = "\033[42m"  # Sfondo Verde per le celle del 42
+        self.FORTY_TWO_COLOR = "\033[46m"  # Sfondo Verde per le celle del 42
 
-        self.ft_coords = ft_coords
-        self.path_coords = False
+        self.path_coords = []
+        if hasattr(self.maze, 'forty_two_coords'):
+            self.forty_two_coords = self.maze.forty_two_coords
+        else:
+            self.forty_two_coords = []
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -50,7 +54,7 @@ class MazeRenderer:
                     col += f"{self.EXIT_COLOR}   {self.RESET}"
                 elif self.show_path and (x, y) in self.path_coords:
                     col += f"{self.PATH_COLOR}   {self.RESET}"
-                elif (x, y) in self.ft_coords:
+                elif (x, y) in self.forty_two_coords:
                     col += f"{self.FORTY_TWO_COLOR}   {self.RESET}"
                 else:
                     col += "   "

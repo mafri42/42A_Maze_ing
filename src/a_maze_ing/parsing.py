@@ -32,7 +32,7 @@ def config() -> dict:
                 entry_coord = [int(x) for x in data_dict['ENTRY'].split(',')]
                 exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
                 output_file = data_dict['OUTPUT_FILE']
-                seed = data_dict['SEED']
+                seed = int(data_dict['SEED'])
                 not_perfect = data_dict['PERFECT'].lower()
                 if not_perfect == 'true':
                     perfect = True

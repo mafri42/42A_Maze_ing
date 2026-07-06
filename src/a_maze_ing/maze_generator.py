@@ -13,14 +13,16 @@ class MazeGenerator:
         self.exit = exit
         self.perfect = perfect
         self.output = output
-        self.seed = seed
-        self.matrix: list[list[int]] = [[15 for _ in range(width)]
-                                        for _ in range(height)]
+
         if seed == 0:
             # if seed != 0: random.seed(self.seed)
             self.seed = random.randint(1, 1927)
         else:
             self.seed = seed
+        random.seed(self.seed)
+
+        self.matrix: list[list[int]] = [[15 for _ in range(width)]
+                                        for _ in range(height)]
 
     def print_matrix(self) -> None:
         for row in self.matrix:

@@ -24,7 +24,7 @@ if __name__ == "__main__":
         sys.exit(1)
     print(f"\nLab {maze.width}x{maze.height} initialized!")
     try:
-        renderer = MazeRenderer(maze, maze.pattern_ft)
+        renderer = MazeRenderer(maze)
         renderer.interactive_menu()
     except ValueError as e:
         print(f"Error: {e}")
