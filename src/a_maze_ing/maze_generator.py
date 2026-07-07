@@ -9,8 +9,8 @@ class MazeGenerator:
             raise ValueError("Error: Width and Height have to be > 0.")
         self.width = width
         self.height = height
-        self.entry = entry
-        self.exit = exit
+        self.entry = tuple(entry)
+        self.exit = tuple(exit)
         self.perfect = perfect
         self.output = output
 

@@ -1,4 +1,5 @@
 import os
+from .path import bfs_alg
 
 
 class MazeRenderer:
@@ -24,7 +25,7 @@ class MazeRenderer:
         self.PATH_COLOR = "\033[44m"   # Sfondo Blu per il cammino
         self.FORTY_TWO_COLOR = "\033[46m"  # Sfondo Verde per le celle del 42
 
-        self.path_coords = []
+        self.path_coords = bfs_alg(self)
         if hasattr(self.maze, 'forty_two_coords'):
             self.forty_two_coords = self.maze.forty_two_coords
         else:
@@ -84,12 +85,14 @@ class MazeRenderer:
             print("3. Change maze wall colors")
             print("4. Quit")
             choice = input("Choice? (1-4): ")
-            if choice == '1': 
-                self.maze.matrix = [[15 for _ in range(self.maze.width)] for _ in range(self.maze.height)]
+            if choice == '1':
+                self.maze.matrix = [[15 for _ in range(self.maze.width)]
+                                    for _ in range(self.maze.height)]
                 self.maze.mazing()
             elif choice == '2':
                 self.show_path = not self.show_path
             elif choice == '3':
-                self.current_color_idx = (self.current_color_idx + 1) % len(self.WALL_COLORS)
+                self.current_color_idx = (self.current_color_idx
+                                          + 1) % len(self.WALL_COLORS)
             elif choice == '4':
                 break
