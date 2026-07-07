@@ -90,7 +90,7 @@ class MazeRenderer:
                                     for _ in range(self.maze.height)]
                 self.maze.mazing()
                 new_path = bfs_alg(self.maze)
-                self.maze.output(new_path)
+                self.maze.path_output(new_path)
                 self.path_coords = self.maze.path_coords
             elif choice == '2':
                 self.show_path = not self.show_path
