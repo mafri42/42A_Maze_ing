@@ -1,5 +1,5 @@
 import sys
-from src.a_maze_ing import config, MazeRenderer, Pattern, bfs_alg
+from src.a_maze_ing import config, MazeRenderer, Pattern, bfs_alg, MazeOutput
 
 
 if __name__ == "__main__":
@@ -17,8 +17,9 @@ if __name__ == "__main__":
         maze.check()
         maze.mazing()
         path = bfs_alg(maze)
-        maze.output(path)
-        # maze.save()
+        maze.path_output(path)
+        expo = MazeOutput(maze, path)
+        expo.save()
     except ValueError as e:
         print(f"Error: {e}")
         sys.exit(1)
