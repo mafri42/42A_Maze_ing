@@ -1,8 +1,5 @@
 import sys
-from src.a_maze_ing.parsing import config
-from src.a_maze_ing.maze_generator import MazeGenerator
-from src.a_maze_ing.maze_render import MazeRenderer
-from src.a_maze_ing.ft_pattern import Pattern
+from src.a_maze_ing import config, MazeRenderer, Pattern
 
 
 if __name__ == "__main__":
