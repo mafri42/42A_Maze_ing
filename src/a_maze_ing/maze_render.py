@@ -1,4 +1,5 @@
 import os
+from .path import bfs_alg
 
 
 class MazeRenderer:
@@ -88,6 +89,9 @@ class MazeRenderer:
                 self.maze.matrix = [[15 for _ in range(self.maze.width)]
                                     for _ in range(self.maze.height)]
                 self.maze.mazing()
+                new_path = bfs_alg(self.maze)
+                self.maze.output(new_path)
+                self.path_coords = self.maze.path_coords
             elif choice == '2':
                 self.show_path = not self.show_path
             elif choice == '3':

@@ -121,7 +121,7 @@ class MazeGenerator:
 
     def output(self, path: str) -> None:
         self.path_string = path
-        self.path_coords = []
+        self.path_coords.clear()
         x, y = self.entry
         self.path_coords.append((x, y))
         for move in path:
@@ -132,7 +132,7 @@ class MazeGenerator:
             elif move == 'E':
                 x += 1
             elif move == 'W':
-                y += 1
+                x -= 1
             self.path_coords.append((x, y))
 
 
