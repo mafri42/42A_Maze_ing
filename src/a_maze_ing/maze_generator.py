@@ -12,8 +12,9 @@ class MazeGenerator:
         self.entry = tuple(entry)
         self.exit = tuple(exit)
         self.perfect = perfect
-        self.output = output
-
+        self.output_file = output
+        self.path_coords: list[tuple[int, int]] = []
+        self.path_string = ""
         if seed == 0:
             # if seed != 0: random.seed(self.seed)
             self.seed = random.randint(1, 1927)
@@ -117,6 +118,22 @@ class MazeGenerator:
                 stacked.append((next_x, next_y))
             else:
                 stacked.pop()
+
+    def output(self, path: str) -> None:
+        self.path_string = path
+        self.path_coords = []
+        x, y = self.entry
+        self.path_coords.append((x, y))
+        for move in path:
+            if move == 'N':
+                y -= 1
+            elif move == 'S':
+                y += 1
+            elif move == 'E':
+                x += 1
+            elif move == 'W':
+                y += 1
+            self.path_coords.append((x, y))
 
 
 '''

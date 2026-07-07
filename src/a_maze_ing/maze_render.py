@@ -1,5 +1,4 @@
 import os
-from .path import bfs_alg
 
 
 class MazeRenderer:
@@ -25,7 +24,7 @@ class MazeRenderer:
         self.PATH_COLOR = "\033[44m"   # Sfondo Blu per il cammino
         self.FORTY_TWO_COLOR = "\033[46m"  # Sfondo Verde per le celle del 42
 
-        self.path_coords = bfs_alg(self)
+        self.path_coords = self.maze.path_coords
         if hasattr(self.maze, 'forty_two_coords'):
             self.forty_two_coords = self.maze.forty_two_coords
         else:
