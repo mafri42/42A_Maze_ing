@@ -5,4 +5,5 @@ from .ft_pattern import Pattern
 from .path import bfs_alg
 from .output import MazeOutput
 
-__all__ = ["config", "MazeGenerator", "MazeRenderer", "Pattern", "bfs_alg", "MazeOutput"]
+__all__ = ["config", "MazeGenerator", "MazeRenderer", "Pattern", "bfs_alg",
+           "MazeOutput"]
