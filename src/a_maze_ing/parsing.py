@@ -33,6 +33,10 @@ def config() -> dict:
                 exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
                 output_file = data_dict['OUTPUT_FILE']
                 seed = int(data_dict['SEED'])
+                if seed == '':
+                    seed = 0
+                else:
+                    seed = int(seed)
                 not_perfect = data_dict['PERFECT'].lower()
                 if not_perfect == 'true':
                     perfect = True

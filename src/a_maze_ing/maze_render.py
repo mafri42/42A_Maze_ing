@@ -10,19 +10,19 @@ class MazeRenderer:
         self.maze.exit = tuple(self.maze.exit)
 
         self.WALL_COLORS = [
-            "\033[37m",  # 0: Bianco
-            "\033[36m",  # 1: Ciano
-            "\033[32m",  # 2: Verde
-            "\033[35m",  # 3: Magenta
-            "\033[33m",  # 4: Giallo
-            "\033[31m",  # 5: Rosso
+            "\033[37m",  # 0: White
+            "\033[36m",  # 1: Cian
+            "\033[32m",  # 2: Green
+            "\033[35m",  # 3: Magent
+            "\033[33m",  # 4: yellow
+            "\033[31m",  # 5: Red
         ]
-        self.current_color_idx = 0  # Indice del colore attuale
+        self.current_color_idx = 0
 
         self.RESET = "\033[0m"
         self.ENTRY_COLOR = "\033[42m"  # Sfondo Magenta per l'ingresso
         self.EXIT_COLOR = "\033[41m"   # Sfondo Rosso per l'uscita
-        self.PATH_COLOR = "\033[44m"   # Sfondo Blu per il cammino
+        self.PATH_COLOR = "\033[47m"   # Sfondo Blu per il cammino
         self.FORTY_TWO_COLOR = "\033[46m"  # Sfondo Verde per le celle del 42
 
         self.path_coords = self.maze.path_coords
