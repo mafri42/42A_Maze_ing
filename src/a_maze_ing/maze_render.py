@@ -79,6 +79,8 @@ class MazeRenderer:
         while True:
             self.clear_screen()
             self.draw()
+            if self.maze.width <= 9 or self.maze.height <= 7:
+                print("Error: The maze size does not allow the '42' pattern.")
             print("\n=== A-Maze-ing ===")
             print("1. Re-generate a new maze")
             print("2. Show/Hide path from entry to exit")

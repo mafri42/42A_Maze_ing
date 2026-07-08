@@ -4,16 +4,16 @@ from src.a_maze_ing import config, MazeRenderer, Pattern, bfs_alg, MazeOutput
 
 if __name__ == "__main__":
     data = config()
-    maze = Pattern(
-        width=data['width'],
-        height=data['height'],
-        entry=data['entry'],
-        exit=data['exit'],
-        output=data['output_file'],
-        perfect=data['perfect'],
-        seed=data['seed']
-    )
     try:
+        maze = Pattern(
+            width=data['width'],
+            height=data['height'],
+            entry=data['entry'],
+            exit=data['exit'],
+            output=data['output_file'],
+            perfect=data['perfect'],
+            seed=data['seed']
+        )
         maze.check()
         maze.mazing()
         path = bfs_alg(maze)

@@ -26,7 +26,6 @@ def config() -> dict:
                         raise ValueError(f"MIssing '=' in: {i}")
                     key, value = line.split("=", 1)
                     data_dict[key.strip().upper()] = value.strip()
-                print(data_dict)
                 width = int(data_dict['WIDTH'])
                 height = int(data_dict['HEIGHT'])
                 entry_coord = [int(x) for x in data_dict['ENTRY'].split(',')]
@@ -59,4 +58,7 @@ def config() -> dict:
             sys.exit(1)
         except ValueError as e:
             print(f"Error opening file '{filename}': {e}")
+            sys.exit(1)
+        except KeyError as e:
+            print(f"Missing key in {filename}: {e}")
             sys.exit(1)

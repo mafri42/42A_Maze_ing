@@ -105,6 +105,8 @@ class MazeGenerator:
     def mazing(self) -> None:
         checked: list[list[bool]] = [[False for _ in range(self.width)]
                                      for _ in range(self.height)]
+        if not self.perfect:
+            self.crazy_ralph
         x, y = self.entry
         checked[y][x] = True
         stacked: list[tuple[int, int]] = [(x, y)]

@@ -7,7 +7,7 @@ class Pattern(MazeGenerator):
         checked: list[list[bool]] = [[False for _ in range(self.width)]
                                      for _ in range(self.height)]
         self.forty_two_coords = []
-        if self.width < 9 or self.height < 7:
+        if self.width <= 9 or self.height <= 7:
             print("Error: The maze size does not allow the '42' pattern.")
         else:
             self.move_x = round((self.width - 7) / 2)
