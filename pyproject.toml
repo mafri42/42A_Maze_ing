@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "a_maze_ing"
+version = "0.1.0"
+description = "An interactive maze generator and solver"
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    { name = "masacco" },
+    { name = "acastald" }
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8>=6.0",
+    "mypy>=1.0"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
