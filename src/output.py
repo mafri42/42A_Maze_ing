@@ -1,5 +1,8 @@
+from src.maze_generator import MazeGenerator
+
+
 class MazeOutput:
-    def __init__(self, maze_gen, path_string: str) -> None:
+    def __init__(self, maze_gen: MazeGenerator, path_string: str) -> None:
         self.maze = maze_gen
         self.path_string = path_string
 

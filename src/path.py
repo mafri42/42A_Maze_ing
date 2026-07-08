@@ -1,7 +1,8 @@
 from collections import deque
+from src.maze_generator import MazeGenerator
 
 
-def bfs_alg(maze) -> str:
+def bfs_alg(maze: MazeGenerator) -> str:
     d = deque([(maze.entry[0], maze.entry[1], "")])
     checked = set()
     checked.add((maze.entry[0], maze.entry[1]))

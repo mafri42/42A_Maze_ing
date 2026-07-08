@@ -1,12 +1,12 @@
 import random
-from .maze_generator import MazeGenerator
+from src.maze_generator import MazeGenerator
 
 
 class Pattern(MazeGenerator):
     def mazing(self) -> None:
         checked: list[list[bool]] = [[False for _ in range(self.width)]
                                      for _ in range(self.height)]
-        self.forty_two_coords = []
+        self.forty_two_coords: list[tuple[int, int]] = []
         if self.width <= 9 or self.height <= 7:
             print("Error: The maze size does not allow the '42' pattern.")
         else:
@@ -21,7 +21,10 @@ class Pattern(MazeGenerator):
                 x = self.move_x + ft_x
                 y = self.move_y + ft_y
                 self.forty_two_coords.append((x, y))
-                if (x, y) != self.entry and (x, y) != self.exit:
+                if (x, y) == self.entry or (x, y) == self.exit:
+                    raise ValueError("Entry and exit coord can't be the "
+                                     "same as the 42 pattern")
+                elif (x, y) != self.entry and (x, y) != self.exit:
                     checked[y][x] = True
         e_x, e_y = self.entry
         checked[e_y][e_x] = True
@@ -36,3 +39,6 @@ class Pattern(MazeGenerator):
                 stacked.append((next_x, next_y))
             else:
                 stacked.pop()
+        self.ft_coords = self.forty_two_coords
+        if not self.perfect:
+            self.crazy_ralph()

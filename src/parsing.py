@@ -1,8 +1,19 @@
 import sys
 import os
+from typing import TypedDict
 
 
-def config() -> dict:
+class ConfigData(TypedDict):
+    width: int
+    height: int
+    entry: tuple[int, int]
+    exit: tuple[int, int]
+    output_file: str
+    perfect: bool
+    seed: int
+
+
+def config() -> ConfigData:
     if len(sys.argv) > 2:
         print("Too many arguments")
         sys.exit(1)
@@ -32,7 +43,7 @@ def config() -> dict:
                 exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
                 output_file = data_dict['OUTPUT_FILE']
                 seed = int(data_dict['SEED'])
-                if seed == '':
+                if not seed:
                     seed = 0
                 else:
                     seed = int(seed)
@@ -47,8 +58,8 @@ def config() -> dict:
                 return {
                     'width': width,
                     'height': height,
-                    'entry': entry_coord,
-                    'exit': exit_coord,
+                    'entry': (entry_coord[0], entry_coord[1]),
+                    'exit': (exit_coord[0], exit_coord[1]),
                     'output_file': output_file,
                     'perfect': perfect,
                     'seed': seed

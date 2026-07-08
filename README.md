@@ -172,14 +172,15 @@ maze = MazeGenerator(
 
 maze.check()
 maze.mazing()
+maze.solve()
 ```
 
 The generated maze is available through:
 
 ```python
-maze.matrix
-maze.path_coords
-maze.path_string
+maze.matrix       # Matrix of hexadecimal walls
+maze.path_coords  # Coordinates of the solution path
+maze.path_string  # N,E,S,W path string
 ```
 
 ## Makefile

@@ -1,13 +1,13 @@
 import os
-from .path import bfs_alg
+from src.maze_generator import MazeGenerator
 
 
 class MazeRenderer:
-    def __init__(self, maze_gen) -> None:
+    def __init__(self, maze_gen: MazeGenerator) -> None:
         self.maze = maze_gen
         self.show_path = False
-        self.maze.entry = tuple(self.maze.entry)
-        self.maze.exit = tuple(self.maze.exit)
+        # self.maze.entry = tuple(self.maze.entry)
+        # self.maze.exit = tuple(self.maze.exit)
 
         self.WALL_COLORS = [
             "\033[37m",  # 0: White
@@ -31,10 +31,10 @@ class MazeRenderer:
         else:
             self.forty_two_coords = []
 
-    def clear_screen(self):
+    def clear_screen(self) -> None:
         os.system('cls' if os.name == 'nt' else 'clear')
 
-    def draw(self):
+    def draw(self) -> None:
         matrix = self.maze.matrix
         wall_color = self.WALL_COLORS[self.current_color_idx]
         for y, row in enumerate(matrix):
@@ -75,7 +75,7 @@ class MazeRenderer:
         bot += f"{wall_color}+{self.RESET}"
         print(bot)
 
-    def interactive_menu(self):
+    def interactive_menu(self) -> None:
         while True:
             self.clear_screen()
             self.draw()
@@ -91,7 +91,7 @@ class MazeRenderer:
                 self.maze.matrix = [[15 for _ in range(self.maze.width)]
                                     for _ in range(self.maze.height)]
                 self.maze.mazing()
-                new_path = bfs_alg(self.maze)
+                new_path = self.maze.solve()
                 self.maze.path_output(new_path)
                 self.path_coords = self.maze.path_coords
             elif choice == '2':
