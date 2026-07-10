@@ -23,8 +23,8 @@ def config() -> ConfigData:
     else:
         filename = sys.argv[1]
         try:
-            if filename != "config.txt":
-                raise ValueError(f"it's not the right file '{filename}'")
+            # if filename != "config.txt":
+            #     raise ValueError(f"it's not the right file '{filename}'")
             if os.path.basename(sys.argv[0]) != "a_maze_ing.py":
                 raise ValueError(f"it's not the right file '{sys.argv[0]}'")
             with open(sys.argv[1], "r") as file:
@@ -34,13 +34,17 @@ def config() -> ConfigData:
                     if line.startswith("#") or not line:
                         continue
                     if '=' not in i:
-                        raise ValueError(f"MIssing '=' in: {i}")
+                        raise ValueError(f"Missing '=' in: {i}")
                     key, value = line.split("=", 1)
                     data_dict[key.strip().upper()] = value.strip()
                 width = int(data_dict['WIDTH'])
                 height = int(data_dict['HEIGHT'])
                 entry_coord = [int(x) for x in data_dict['ENTRY'].split(',')]
+                if len(entry_coord) != 2:
+                    raise ValueError("Invalid parameter")
                 exit_coord = [int(x) for x in data_dict['EXIT'].split(',')]
+                if len(exit_coord) != 2:
+                    raise ValueError("Invalid parameter")
                 output_file = data_dict['OUTPUT_FILE']
                 seed = int(data_dict['SEED'])
                 if not seed:

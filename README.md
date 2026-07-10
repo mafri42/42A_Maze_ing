@@ -33,8 +33,7 @@ A-Maze-ing is a Python project developed for the 42 curriculum. It generates ran
         ├── maze_render.py
         ├── path.py
         ├── output.py
-        ├── parsing.py
-        └── ft_pattern.py
+        └── parsing.py
 ```
 
 ## Installation

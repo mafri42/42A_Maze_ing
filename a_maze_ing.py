@@ -1,11 +1,11 @@
 import sys
-from src import config, MazeRenderer, Pattern, MazeOutput
+from src import config, MazeRenderer, MazeGenerator, MazeOutput
 
 
 if __name__ == "__main__":
     data = config()
     try:
-        maze = Pattern(
+        maze = MazeGenerator(
             width=data['width'],
             height=data['height'],
             entry=data['entry'],
